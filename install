@@ -136,6 +136,7 @@ fi
 git clone https://github.com/jaskipper/DO-ssl-setup.git
 
 INSTALL_LOC="/var/www/owncloud"
+export INSTALL_LOC
 
 DO-ssl-setup/sslsetup
 

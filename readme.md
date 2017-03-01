@@ -6,8 +6,8 @@ You can use this script to install and setup OwnCloud on DigitalOcean, Ubuntu 16
 
 Log in to DO through SSH. Clone this repository with the following command:
 
-`git clone https://github.com/jaskipper/DO-ssl-setup.git`
+`git clone https://github.com/jaskipper/DO-Owncloud-Install.git`
 
-Run the bash installer to begin the guided installation.
+Run the bash installer to begin the automated installation.
 
-`DO-ssl-setup/sslsetup`
+`DO-Owncloud-Install/install`

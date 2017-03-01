@@ -41,21 +41,7 @@ ask() {
     done
 }
 
-PKG_NAME=php7.0-mbstring
-PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $PKG_NAME|grep "install ok installed")
-echo Checking for $PKG_NAME: $PKG_OK
-if [ "" == "$PKG_OK" ]; then
-  echo "No $PKG_NAME. Setting up $PKG_NAME."
-  sudo apt --yes install $PKG_NAME
-fi
-
-PKG_NAMEphp-imagick
-PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $PKG_NAME|grep "install ok installed")
-echo Checking for $PKG_NAME: $PKG_OK
-if [ "" == "$PKG_OK" ]; then
-  echo "No $PKG_NAME. Setting up $PKG_NAME."
-  sudo apt --yes install $PKG_NAME
-fi
+apt-get update
 
 PKG_NAME=php7.0-intl
 PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $PKG_NAME|grep "install ok installed")
@@ -72,9 +58,27 @@ apt update
 
 apt --yes install owncloud
 
+service apache2 reload
+
 echo ""
 echo "#       Creating OWNCLOUD User and Database        #"
 echo ""
+
+#Get MySQL Root Password and put it in a variable
+rootdbpassword=$(grep root_mysql /root/.digitalocean_password | sed 's#"##g' | sed 's#root_mysql_pass=##g')
+
+echo "Removing Root MySQL Configuration file"
+if [ -f /root/.my.cnf ]; then
+  rm /root/.my.cnf
+fi
+
+echo "Creating New Root MySQL Configuration file"
+echo "[client]" >> /root/.my.cnf
+echo "user=root" >> /root/.my.cnf
+echo "password=$rootdbpassword" >> /root/.my.cnf
+
+echo "Changing Permissions on Root MySQL Configuration file"
+chmod 600 /root/.my.cnf
 
 # Getting or Setting OwnCloud Database Name
 if grep -q OWNCLOUD_DATABASE /root/.digitalocean_password; then
@@ -125,8 +129,8 @@ DATA_LOCATION="/var/www/owncloud/data"
 echo ""
 echo "Did you create a \'Volume\' on DigitalOcean that you would like to use for OwnCloud Storage?"
 if ask "Please Type [Y] or [N] and the press [enter]: " ; then
-  install-files/connectvolume
-  install-files/moveowncloud
+  DO-Owncloud-Install/install-files/connectvolume
+  DO-Owncloud-Install/install-files/moveowncloud
 fi
 
 git clone https://github.com/jaskipper/DO-ssl-setup.git

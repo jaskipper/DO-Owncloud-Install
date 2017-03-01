@@ -129,6 +129,8 @@ if ask "Please Type [Y] or [N] and the press [enter]: " ; then
   install-files/moveowncloud
 fi
 
+git clone https://github.com/jaskipper/DO-ssl-setup.git
+
 INSTALL_LOC="/var/www/owncloud"
 
 DO-ssl-setup/sslsetup

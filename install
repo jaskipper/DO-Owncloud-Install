@@ -124,28 +124,23 @@ mysql -uroot -e "FLUSH PRIVILEGES;"
 
 echo "Finished OwnCloud Database setup successfully"
 
-DATA_LOCATION="/var/www/owncloud/data"
-export DATA_LOCATION
-
 echo ""
 echo "Did you create a 'Volume' on DigitalOcean that you would like to use for OwnCloud Storage?"
 if ask "Please Type [Y] or [N] and the press [enter]: " ; then
   DO-Owncloud-Install/install-files/connectvolume
   DO-Owncloud-Install/install-files/moveowncloud
-  echo "DATA_LOCATION=/mnt/$VOLUME_NAME/owncloud/data" >> /root/config.conf
+  export DATA_LOCATION=/mnt/$VOLUME_NAME/owncloud/data
 else
-  echo "DATA_LOCATION=/var/www/owncloud/data" >> /root/config.conf
+  export DATA_LOCATION=/var/www/owncloud/data
 fi
 
 git clone https://github.com/jaskipper/DO-ssl-setup.git
 
-echo "INSTALL_LOC=/var/www/owncloud" >> /root/config.conf
+export INSTALL_LOC=/var/www/owncloud
 
 DO-ssl-setup/sslsetup
 
 echo "Successfully installed and Set up OwnCloud!"
-
-source /root/config.conf
 
 echo ""
 echo "Here is your OwnCloud Installation Information. PLEASE WRITE THIS DOWN IN A SECURE LOCATION!"

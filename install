@@ -127,7 +127,7 @@ echo "Finished OwnCloud Database setup successfully"
 DATA_LOCATION="/var/www/owncloud/data"
 
 echo ""
-echo "Did you create a \'Volume\' on DigitalOcean that you would like to use for OwnCloud Storage?"
+echo "Did you create a 'Volume' on DigitalOcean that you would like to use for OwnCloud Storage?"
 if ask "Please Type [Y] or [N] and the press [enter]: " ; then
   DO-Owncloud-Install/install-files/connectvolume
   DO-Owncloud-Install/install-files/moveowncloud

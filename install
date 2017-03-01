@@ -125,6 +125,7 @@ mysql -uroot -e "FLUSH PRIVILEGES;"
 echo "Finished OwnCloud Database setup successfully"
 
 DATA_LOCATION="/var/www/owncloud/data"
+export DATA_LOCATION
 
 echo ""
 echo "Did you create a 'Volume' on DigitalOcean that you would like to use for OwnCloud Storage?"
@@ -142,12 +143,13 @@ DO-ssl-setup/sslsetup
 
 echo "Successfully installed and Set up OwnCloud!"
 
-
 echo ""
 echo "Here is your OwnCloud Installation Information. PLEASE WRITE THIS DOWN IN A SECURE LOCATION!"
 echo ""
 echo "............................."
-echo "OwnCloud Installation Location: /var/www/owncloud"
+echo "OwnCloud Username: ___Create Your Own Username at Setup___"
+echo "OwnCloud Password: ___Create Your Own Password at Setup___"
+echo "OwnCloud Database Type: MySQL"
 echo "OwnCloud Data Location: $DATA_LOCATION"
 echo "OwnCloud Database User: owncloud"
 echo "OwnCloud Database Password: $OWNCLOUD_DB_PASSWORD"

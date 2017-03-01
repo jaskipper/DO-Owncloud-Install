@@ -129,7 +129,7 @@ echo "Did you create a 'Volume' on DigitalOcean that you would like to use for O
 if ask "Please Type [Y] or [N] and the press [enter]: " ; then
   DO-Owncloud-Install/install-files/connectvolume
   DO-Owncloud-Install/install-files/moveowncloud
-  export DATA_LOCATION=/mnt/$VOLUME_NAME/owncloud/data
+  export DATA_LOCATION=/mnt$VOLUME_NAME/owncloud/data
 else
   export DATA_LOCATION=/var/www/owncloud/data
 fi

@@ -12,6 +12,8 @@ function myvolume {
   if VOLUME_ID=$(find /dev/disk/by-id/*$VOLUME_NAME); then
     export VOLUME_ID
     echo -e "Your Volume_ID is $VOLUME_ID"
+    VOLUME_NAME=$(ls /dev/disk/by-id | awk -F 'DO_Volume_' '{print $2}')
+    export VOLUME_NAME
   else
     if ((VOLUMES_CONNECTED > 0)); then
       echo -e "I wasn't able to find the volume that you specified in the .env file. Below you will see a list of volumes that are currently connected to your droplet."

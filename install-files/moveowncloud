@@ -14,8 +14,7 @@ echo -e "Moving your Data to /mnt/$VOLUME_NAME"
 mkdir /mnt/$VOLUME_NAME/owncloud
 mv /var/www/owncloud/data /mnt/$VOLUME_NAME/owncloud
 
-DATA_LOCATION="/mnt/$VOLUME_NAME/owncloud/data"
-export DATA_LOCATION
+echo "DATA_LOCATION=/mnt/$VOLUME_NAME/owncloud/data" >> /root/config.conf
 
 echo -e "Starting Apache Server again"
 systemctl start apache2

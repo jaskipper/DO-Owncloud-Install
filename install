@@ -136,12 +136,14 @@ fi
 
 git clone https://github.com/jaskipper/DO-ssl-setup.git
 
-INSTALL_LOC="/var/www/owncloud"
-export INSTALL_LOC
+echo "INSTALL_LOC=/var/www/owncloud" >> /root/config.conf
+echo "DATA_LOCATION=/var/www/owncloud/data" >> /root/config.conf
 
 DO-ssl-setup/sslsetup
 
 echo "Successfully installed and Set up OwnCloud!"
+
+source /root/config.conf
 
 echo ""
 echo "Here is your OwnCloud Installation Information. PLEASE WRITE THIS DOWN IN A SECURE LOCATION!"

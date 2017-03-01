@@ -132,12 +132,14 @@ echo "Did you create a 'Volume' on DigitalOcean that you would like to use for O
 if ask "Please Type [Y] or [N] and the press [enter]: " ; then
   DO-Owncloud-Install/install-files/connectvolume
   DO-Owncloud-Install/install-files/moveowncloud
+  echo "DATA_LOCATION=/mnt/$VOLUME_NAME/owncloud/data" >> /root/config.conf
+else
+  echo "DATA_LOCATION=/var/www/owncloud/data" >> /root/config.conf
 fi
 
 git clone https://github.com/jaskipper/DO-ssl-setup.git
 
 echo "INSTALL_LOC=/var/www/owncloud" >> /root/config.conf
-echo "DATA_LOCATION=/var/www/owncloud/data" >> /root/config.conf
 
 DO-ssl-setup/sslsetup
 
